@@ -55,7 +55,7 @@ app.get('/documentation', (req, res) => {
 
 });
 
-app.get('/books', (req, res) => {
+app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
