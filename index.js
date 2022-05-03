@@ -54,3 +54,8 @@ app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname});
 
 });
+
+app.get('/books', (req, res) => {
+    res.json(topMovies);
+});
+
