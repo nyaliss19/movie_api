@@ -60,8 +60,8 @@ app.get('/', (req, res) => {
     res.send('Here are my favorite movies!');
 });
 
-app.get('/documentation', (req, res) => {
-    res.sendFile('public/documentation.html', { root: __dirname});
+// app.get('/documentation', (req, res) => {
+//     res.sendFile('public/documentation.html', { root: __dirname});
 
 // });
 
