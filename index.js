@@ -51,6 +51,9 @@ let topMovies = [
     },
 ];
 
+//Middleware
+
+
 //GET requests
 
 app.get('/', (req, res) => {
@@ -60,14 +63,32 @@ app.get('/', (req, res) => {
 app.get('/documentation', (req, res) => {
     res.sendFile('public/documentation.html', { root: __dirname});
 
-});
+// });
+
+app.use(express.static('public'));
 
 app.get('/movies', (req, res) => {
     res.json(topMovies);
 });
 
+//error handling
+const bodyParser = require('body-parser'),
+    methodOverride = require('method-override');
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(methodOverride());
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+
 // listen for requests
 app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
 });
-
