@@ -44,3 +44,9 @@ let topMovies = [
     },
 ];
 
+//GET requests
+
+app.get('/', (req, res) => {
+    res.send('Here are my favorite movies!');
+});
+
