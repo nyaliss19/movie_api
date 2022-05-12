@@ -62,9 +62,15 @@ app.get('/movies', (req, res) => {
     res.status(200).json(movies);
 });
 
-// });
+app.get('/movies/:title', (req, res) => {
+    const { title } = req.params;
+    const movie = movies.find( movie => movie.Title === title );
 
-app.use(express.static('public'));
+    if (movie) {
+        res.status(200).json(movie);
+    } else {
+        res.status(400).send('no such movie');
+    }
 
 });
 
