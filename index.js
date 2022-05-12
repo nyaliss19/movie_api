@@ -8,7 +8,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 app.use(morgan('combined', {stream: accessLogStream}));
 
-let topMovies = [
+let movies = [
     {
         title: 'The Matrix',
         year: '1999'
@@ -56,19 +56,16 @@ let topMovies = [
 
 //GET requests
 
-app.get('/', (req, res) => {
-    res.send('Here are my favorite movies!');
-});
+app.use(express.static('public'));
 
-// app.get('/documentation', (req, res) => {
-//     res.sendFile('public/documentation.html', { root: __dirname});
+app.get('/movies', (req, res) => {
+    res.status(200).json(movies);
+});
 
 // });
 
 app.use(express.static('public'));
 
-app.get('/movies', (req, res) => {
-    res.json(topMovies);
 });
 
 //error handling
