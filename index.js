@@ -8,6 +8,19 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 app.use(morgan('combined', {stream: accessLogStream}));
 
+let users = [
+    {
+        id: 1,
+        name: "Willow",
+        favoriteMovies: []
+    },
+    {
+        id: 2,
+        name: "Jamie",
+        favoriteMovies: []
+    },
+]
+
 let movies = [
     {
         title: 'The Matrix',
