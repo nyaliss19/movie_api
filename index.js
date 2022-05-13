@@ -64,7 +64,7 @@ app.get('/movies', (req, res) => {
 
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
-    const movie = movies.find( movie => movie.Title === title );
+    const movie = movies.find( movie => movie.title === title );
 
     if (movie) {
         res.status(200).json(movie);
