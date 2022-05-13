@@ -26,7 +26,7 @@ let movies = [
         title: 'The Matrix',
         year: '1999',
         director: 'The Wachowskis',
-        genre: 'action', 'sci-fi'
+        genre: 'action/sci-fi'
     },
     {
         title: 'Awakenings',
@@ -38,43 +38,43 @@ let movies = [
         title: 'Pans Labyrinth',
         year: '2006',
         director: 'Guillermo del Toro',
-        genre: 'fantasy', 'drama'
+        genre: 'fantasy/drama'
     },
     {
         title: 'Chronicles of Riddick',
         year: '2004',
         director: 'David Twohy',
-        genre: 'action', 'sci-fi'
+        genre: 'action/sci-fi'
     },
     {
         title: 'Lady and the Tramp',
         year: '1955',
         director: 'Clyde Geronimi, Wilfred Jackson, and Hamilton Luske',
-        genre: 'animated', 'romance'
+        genre: 'animated/romance'
     },
     {
         title: 'Annihilation',
         year: '2018',
         director: 'Alex Garland',
-        genre: 'sci-fi', 'horror'
+        genre: 'sci-fi/horror'
     },
     {
         title: 'Arrival',
         year: '2016',
         director: 'Denis Villeneuve',
-        genre: 'sci-fi', 'thriller'
+        genre: 'sci-fi/thriller'
     },
     {
         title: 'The Matrix Resurrections',
         year: '2021',
         director: 'Lana Wachowski',
-        genre: 'action', 'sci-fi'
+        genre: 'action/sci-fi'
     },
     {
         title: 'Speed',
         year: '1994',
         director: 'Jan de Bont',
-        genre: 'action', 'thriller'
+        genre: 'action/thriller'
     },
     {
         title: 'Twin Peaks: Fire Walk With Me',
@@ -93,7 +93,7 @@ app.use(express.static('public'));
 
 app.get('/movies', (req, res) => {
     res.status(200).json(movies);
-});
+})
 
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
