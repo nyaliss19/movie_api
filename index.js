@@ -88,6 +88,7 @@ let movies = [
     },
 ];
 
+
 //Middleware
 
 
@@ -122,6 +123,19 @@ app.get('/movies/genre/:genreName', (req, res) => {
     }
 
 })
+
+app.get('/movies/directors/:directorName', (req, res) => {
+    const { directorName } = req.params;
+    const director = movies.find( movie => movie.director === directorName ).director;
+
+    if (director) {
+        res.status(200).json(director);
+    } else {
+        res.status(400).send('no such director');
+    }
+
+})
+
 
 //error handling
 const bodyParser = require('body-parser'),
