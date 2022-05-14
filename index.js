@@ -1,12 +1,16 @@
 const express = require('express'),
     morgan = require('morgan'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    uuid = require('uuid'),
+    bodyParser = require('body-parser');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
 app.use(morgan('combined', {stream: accessLogStream}));
+app.use(express.static('public'));
+app.use(bodyParser.json());
 
 let users = [
     {
