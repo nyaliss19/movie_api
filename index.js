@@ -126,6 +126,7 @@ app.get('/movies', (req, res) => {
     res.status(200).json(movies);
 })
 
+//read
 app.get('/movies/:title', (req, res) => {
     const { title } = req.params;
     const movie = movies.find( movie => movie.title === title );
@@ -138,6 +139,7 @@ app.get('/movies/:title', (req, res) => {
 
 })
 
+//read
 app.get('/movies/genre/:genreName', (req, res) => {
     const { genreName } = req.params;
     const genre = movies.find( movie => movie.genre === genreName ).genre;
@@ -150,6 +152,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
 
 })
 
+//read
 app.get('/movies/directors/:directorName', (req, res) => {
     const { directorName } = req.params;
     const director = movies.find( movie => movie.director === directorName ).director;
