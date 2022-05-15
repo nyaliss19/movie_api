@@ -149,8 +149,7 @@ app.get('/movies/directors/:directorName', (req, res) => {
 
 
 //error handling
-const bodyParser = require('body-parser'),
-    methodOverride = require('method-override');
+const  methodOverride = require('method-override');
 
 app.use(bodyParser.urlencoded({
     extended: true
