@@ -15,13 +15,13 @@ app.use(bodyParser.json());
 let users = [
     {
         id: 1,
-        name: "Willow",
+        name: "Kim",
         favoriteMovies: []
     },
     {
         id: 2,
         name: "Jamie",
-        favoriteMovies: []
+        favoriteMovies: ["The Matrix"]
     },
 ]
 
