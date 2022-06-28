@@ -93,3 +93,5 @@
 ::1 - - [16/May/2022:00:11:59 +0000] "DELETE /users/2/The%20Matrix HTTP/1.1" 404 162 "-" "PostmanRuntime/7.29.0"
 ::1 - - [16/May/2022:00:12:33 +0000] "POST /users/2/The%20Matrix HTTP/1.1" 404 160 "-" "PostmanRuntime/7.29.0"
 ::1 - - [16/May/2022:00:12:43 +0000] "DELETE /users/2/The%20Matrix HTTP/1.1" 404 162 "-" "PostmanRuntime/7.29.0"
+::1 - - [17/May/2022:02:06:43 +0000] "POST /users/1/Speed HTTP/1.1" 200 36 "-" "PostmanRuntime/7.29.0"
+::1 - - [17/May/2022:02:06:59 +0000] "DELETE /users/1/Speed HTTP/1.1" 200 40 "-" "PostmanRuntime/7.29.0"
