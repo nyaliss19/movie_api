@@ -189,6 +189,22 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
     });
 });
 
+// delete a user by username
+app.delete('/users/:Username', (req, res) => {
+    Users.findOneAndRemove({ Username: req.params.Username })
+    .then((user) => {
+        if (!user) {
+            res.status(400).send(req.params.Username + 'was not found.');
+        } else {
+            res.status(200).send(req.params.Username + 'was deleted.');
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
 //update
 app.put('/users/:id', (req, res) => {
     const { id } = req.params;
