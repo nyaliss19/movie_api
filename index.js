@@ -134,6 +134,17 @@ app.post('/users', (req, res) => {
         res.status(400).send('users need names')
     }
 })
+//get all users
+app.get('/users', (req, res) => {
+    Users.find()
+    .then((users) => {
+        res.status(201).json(users);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
 
 //update
 app.put('/users/:id', (req, res) => {
