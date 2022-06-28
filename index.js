@@ -138,6 +138,18 @@ app.get('/users', (req, res) => {
     });
 });
 
+//get a user by username
+app.get('/users/:Username', (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+    .then((user) => {
+        res.json(users);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
 //update
 app.put('/users/:id', (req, res) => {
     const { id } = req.params;
