@@ -150,6 +150,28 @@ app.get('/users/:Username', (req, res) => {
     });
 });
 
+// update a user's info by username
+app.put('/users/:Username', (req, res) => {
+    Users.findOneAndUpdate({ Username: req.params.Username }, 
+        { $set: 
+            {
+                Username: req.body.Username,
+                Password: req.body.Password,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday
+            }
+        },
+        { new: true }, //this line makes sure the updated doc is returned
+        (err, updatedUser) => {
+            if(err) {
+                console.error(err);
+                res.status(500).send('Error: ' + err);
+            } else {
+                res.json(updatedUser);
+            }
+    });
+});
+
 //update
 app.put('/users/:id', (req, res) => {
     const { id } = req.params;
