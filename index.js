@@ -60,6 +60,18 @@ app.get('/users', (req, res) => {
     });
 });
 
+//get all movies
+app.get('/movies', (req, res) => {
+    Users.find()
+    .then((users) => {
+        res.status(201).json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
 //get a user by username
 app.get('/users/:Username', (req, res) => {
     Users.findOne({ Username: req.params.Username })
@@ -98,6 +110,22 @@ app.put('/users/:Username', (req, res) => {
 //Add a movie to a user's list of favorites
 app.post('/users/:Username/movies/:MovieID', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
+        $push: { FavoriteMovies: req.params.MovieID }
+    },
+    { new: true }, //this line makes sure the updated doc is returned
+    (err, updatedUser) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        } else {
+            res.json(updatedUser);
+        }
+    });
+});
+
+//delete a movie from user list of favorites
+app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+    Users.findOneAndRemove({ Username: req.params.Username }, {
         $push: { FavoriteMovies: req.params.MovieID }
     },
     { new: true }, //this line makes sure the updated doc is returned
