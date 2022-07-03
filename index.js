@@ -96,6 +96,18 @@ app.get('/genre/:Genre.Name', (req, res) => {
     });
 });
 
+//get director by name
+app.get('/directors/:Director.Name', (req, res) => {
+    Users.findOne({ Director.Name: req.params.Director.Name })
+    .then((movie) => {
+        res.json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
 //get a user by username
 app.get('/users/:Username', (req, res) => {
     Users.findOne({ Username: req.params.Username })
