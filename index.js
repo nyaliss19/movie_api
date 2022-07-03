@@ -84,6 +84,18 @@ app.get('/movies/:Movie.Title', (req, res) => {
     });
 });
 
+//get genre by name
+app.get('/genre/:Genre.Name', (req, res) => {
+    Users.findOne({ Genre.Name: req.params.Genre.Name })
+    .then((movie) => {
+        res.json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
+});
+
 //get a user by username
 app.get('/users/:Username', (req, res) => {
     Users.findOne({ Username: req.params.Username })
