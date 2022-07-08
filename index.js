@@ -21,6 +21,23 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//default text response when at /
+app.get("/", (req, res) => {
+    res.send("Welcome to MyFlix!");
+});
+
+//return JSON object when at /movies
+app.get("/movies", (req, res) => {
+    Movies.find()
+    .then((movies) => {
+        res.status(201).json(movies);
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+    });
+});
+
 //create
 app.post('/users', (req, res) => {
     Users.findOne({ Username: req.body.Username })
