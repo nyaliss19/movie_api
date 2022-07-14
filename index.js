@@ -77,18 +77,6 @@ app.get('/users', (req, res) => {
     });
 });
 
-//get all movies
-app.get('/movies', (req, res) => {
-    Users.find()
-    .then((users) => {
-        res.status(201).json(movies);
-    })
-    .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-    });
-});
-
 //get a movie by title
 app.get('/movies/:Title', (req, res) => {
     Movies.findOne({ Title: req.params.Title })
