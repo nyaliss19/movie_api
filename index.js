@@ -105,7 +105,7 @@ app.get('/genre/:Name', (req, res) => {
 
 //get director by name
 app.get('/directors/:Name', (req, res) => {
-    Directors.findOne({ Name: req.params.Name })
+    Movies.find ({ 'Director.Name': req.params.Name })
     .then((director) => {
         res.json(director);
     })
