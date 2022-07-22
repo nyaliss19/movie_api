@@ -5,21 +5,251 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myFlix API</title>
-</head>
-<body>
-    This is the documentation for an API called myFlix.
-    <h3>Endpoints</h3>
-    <p>/ returns a default landing page for myFlix</p>
-    <p>/movies returns a list of all movies in the API</p>
-    <p>/movies/:title returns information about specific movie</p>
-    <p>/genre/:Name returns specific genre</p>
-    <p>/directors/:Name returns specific director</p>
-    <p>/users post new user</p>
-    <p>/users search for specific user</p>
-    <p>/users/:username returns a specific user</p>
-    <p>/users/:username update user info by username</p>
-    <p>/users/:Username/movies/:MovieID add new movie to users array</p>
-    <p>/users/:Username/movies/:MovieID delete movie from users array</p>
-    <p>/users/:username delete user by username</p>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ 
+    <style>
+      pre {
+              overflow-x: auto;
+              white-space: pre-wrap;
+              white-space: -moz-pre-wrap;
+              white-space: -pre-wrap;
+              white-space: -o-pre-wrap;
+              word-wrap: break-word;
+           }
+    </style>
+  
+  </head>
+  
+  <body class="container">
+    <h1 class="h1">myFlix API</h1>
+  
+    <p>
+      <mark>This is an API that stores movies and information on said movies for external use.</mark>
+    </p>
+  
+  
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">Business Logic</th>
+          <th scope="col">URL</th>
+          <th scope="col">HTTP Method</th>
+          <th scope="col">Query parameters</th>
+          <th scope="col">Request body data format</th>
+          <th scope="col">Response body data format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Return a list of ALL movies to the user</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>None</td>
+          <td>A JSON array holding data about all movies. Example:
+            <pre>
+              <code>
+      [
+        {
+          "Genre": {
+              "Name": "Thriller",
+              "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible."
+          },
+          "Director": {
+              "Name": "Jonathan Demme",
+              "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+              "Birth": "1944",
+              "Death": "2017"
+          },
+          "_id": "62aa70f8c10843dab33da97d",
+          "Title": "Silence of the Lambs",
+          "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+          "ImagePath": "silenceofthelambs.png",
+          "Featured": true
+        }, 
+        ...
+      ]
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Return data about a single movie by title to the user</td>
+          <td>/movies/[Movie]</td>
+          <td>GET</td>
+          <td>:Movie</td>
+          <td>None</td>
+          <td>A JSON object holding data about the selected movie containing description, genre, director and img URL. Example: 
+            <pre>
+              <code>
+    {
+      "Genre": {
+        "Name": "Thriller",
+        "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible."
+    },
+    "Director": {
+        "Name": "Denis Villeneuve",
+        "Bio": "Denis Villeneuve is an award winning director.",
+        "Birth": "1967"
+    },
+
+    "_id": "62b26497e491326c74b90583",
+    "Title": "Arrival",
+    "Description": "Linguistics professor, Louise Banks, leads a team into one of 12 alien crafts in an attempt to uncover what it is they want. What she learns exceeds her every expectation.",
+    "ImagePath": "arrival.png",
+    "Featured": true
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+          <td>/movies/genres/[Genre]</td>
+          <td>GET</td>
+          <td>:Genre</td>
+          <td>None</td>
+          <td>A JSON object holding data about the selected genre. Example:
+            <pre>
+              <code>
+    { 
+      "Name": "Thriller",
+      "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience. Tension is created by delaying what the audience sees as inevitable, and is built through situations that are menacing or where escape seems impossible." 
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Return data about a director (bio, birth year, death year) by name</td>
+          <td>/movies/directors/[Name]</td>
+          <td>GET</td>
+          <td>:Name</td>
+          <td>None</td>
+          <td>A JSON object holding data about the selected director. Example: 
+            <pre>
+              <code>
+    { 
+        "Name": "Denis Villeneuve",
+        "Bio": "Denis Villeneuve is an award winning director.",
+        "Birth": "1967"
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow new users to register</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>None</td>
+          <td>A JSON object holding data about the user to add. Example: 
+            <pre>
+              <code>
+    { 
+      "Username": "Coheed",
+      "Password": "the1&only", 
+      "Email": "coheed@mail.com", 
+      "Birthday": "1975-03-04" 
+    }
+              </code>
+            </pre>
+          </td>
+          <td>A JSON object holding data about added user including ID. Example:
+            <pre>
+              <code>
+    { 
+      "Username": "Coheed",
+      "Password": "the1&only", 
+      "Email": "coheed@mail.com",
+      "Birthday": "1975-03-04T00:00:00.000Z",
+      "FavoriteMovies": [],
+      "_id": "62d457b759eb3267c6b240dc"
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow users to update their user info (username)</td>
+          <td>/users/[Username]</td>
+          <td>PUT</td>
+          <td>:Username</td>
+          <td> A JSON object holding the new username. Example:
+            <pre>
+              <code>
+    { 
+      "Username": "Coh33d"
+    }
+              </code>
+            </pre>
+          </td>
+          <td>A JSON object with the updated user profile. Example:
+            <pre>
+              <code>
+    { 
+      "_id": "62d457b759eb3267c6b240dc",
+      "Username": "Coh33d",
+      "Password": "the1&only", 
+      "Email": "coheed@mail.com",
+      "Birthday": "1975-03-04T00:00:00.000Z",
+      "FavoriteMovies": []
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow users to add a movie to their list of favorites</td>
+          <td>/users/[Username]/movies/[MovieID]</td>
+          <td>POST</td>
+          <td>:Username, :MovieID</td>
+          <td>None</td>
+          <td>A JSON object with the updated user profile. Example:
+            <pre>
+              <code>
+    { 
+      "_id": "62d457b759eb3267c6b240dc",
+      "Username": "Coh33d",
+      "Password": "the1&only", 
+      "Email": "coheed@mail.com",
+      "Birthday": "1975-03-04T00:00:00.000Z",
+      "FavoriteMovies": [ "62b12273c52bb163a3545262" ]
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow users to remove a movie from their list of favorites</td>
+          <td>/users/[Username]/movies/[MovieID]</td>
+          <td>DELETE</td>
+          <td>:Username, :MovieID</td>
+          <td>None</td>
+          <td>A JSON object with the updated user profile. Example:
+            <pre>
+              <code>
+    { 
+      "_id": "62d457b759eb3267c6b240dc",
+      "Username": "Coh33d",
+      "Password": "the1&only", 
+      "Email": "coheed@mail.com",
+      "Birthday": "1975-03-04T00:00:00.000Z",
+      "FavoriteMovies": []
+    }
+              </code>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>Allow existing users to deregister</td>
+          <td>/users/[Username]</td>
+          <td>DELETE</td>
+          <td>:Username</td>
+          <td>None</td>
+          <td>A message indicating the user was deregistered</td>
+        </tr>
+      </tbody>
+      </table>
 </body>
 </html>
