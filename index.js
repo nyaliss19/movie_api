@@ -108,9 +108,9 @@ app.get('/directors/:Name', (req, res) => {
     Movies.find ({ 'Director.Name': req.params.Name })
     .then((director) => {
         if(movie){
-            res.json(director);
+            res.json(movie.director);
         } else {
-            res.status(404).send("Genre not found");
+            res.status(404).send("Director not found");
         }
     })
     .catch((err) => {
@@ -123,7 +123,7 @@ app.get('/directors/:Name', (req, res) => {
 app.get('/users/:Username', (req, res) => {
     Users.findOne({ Username: req.params.Username })
     .then((user) => {
-        res.json(users);
+        res.json(user);
     })
     .catch((err) => {
         console.error(err);
