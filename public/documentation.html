@@ -105,7 +105,7 @@
         </tr>
         <tr>
           <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-          <td>/movies/genres/[Genre]</td>
+          <td>/movies/genre/[Genre]</td>
           <td>GET</td>
           <td>:Genre</td>
           <td>None</td>
@@ -171,15 +171,18 @@
           </td>
         </tr>
         <tr>
-          <td>Allow users to update their user info (username)</td>
+          <td>Allow users to update their user info</td>
           <td>/users/[Username]</td>
           <td>PUT</td>
           <td>:Username</td>
-          <td> A JSON object holding the new username. Example:
+          <td> A JSON object holding the new user information. Example:
             <pre>
               <code>
     { 
-      "Username": "Coh33d"
+      "Username": "Coh33d",
+      "Password": "the0ne&only", 
+      "Email": "coh33d@mail.com",
+      "Birthday": "1975-03-05T00:00:00.000Z"
     }
               </code>
             </pre>
@@ -191,8 +194,8 @@
       "_id": "62d457b759eb3267c6b240dc",
       "Username": "Coh33d",
       "Password": "the1&only", 
-      "Email": "coheed@mail.com",
-      "Birthday": "1975-03-04T00:00:00.000Z",
+      "Email": "coh33d@mail.com",
+      "Birthday": "1975-03-05T00:00:00.000Z",
       "FavoriteMovies": []
     }
               </code>
