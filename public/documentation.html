@@ -172,12 +172,13 @@
         </tr>
         <tr>
           <td>Return a list of all Users</td>
-          <td>/users</td>
+          <td>/users/[Username]</td>
           <td>GET</td>
           <td>None</td>
           <td>A JSON object holding data about all users. Example: 
             <pre>
               <code>
+    [           
     {
       "_id": "62b5176a8ee3f54638b26e4c",
       "Username": "Coheed",
@@ -185,7 +186,9 @@
       "Email": "coheed@mail.com", 
       "Birthday": "1975-03-14T00:00:00.000Z",
       "FavoriteMovies": [] 
-    }
+    },
+    ...
+    ] 
               </code>
             </pre>
           </td>
