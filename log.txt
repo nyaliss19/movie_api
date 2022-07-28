@@ -148,3 +148,5 @@
 ::1 - - [24/Jul/2022:20:33:42 +0000] "GET /genre/Thriller HTTP/1.1" 200 177 "-" "PostmanRuntime/7.29.2"
 ::1 - - [24/Jul/2022:20:34:22 +0000] "GET /directors/Denis%20Villeneuve HTTP/1.1" 200 - "-" "PostmanRuntime/7.29.2"
 ::1 - - [24/Jul/2022:20:34:59 +0000] "GET /directors/Alex%20Garland HTTP/1.1" 200 - "-" "PostmanRuntime/7.29.2"
+::1 - - [26/Jul/2022:03:15:17 +0000] "GET /directors/Alex%20Garland HTTP/1.1" 200 95 "-" "PostmanRuntime/7.29.2"
+::1 - - [26/Jul/2022:03:15:26 +0000] "GET /directors/Denis%20Villeneuve HTTP/1.1" 200 97 "-" "PostmanRuntime/7.29.2"
