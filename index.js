@@ -21,6 +21,10 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 //default text response when at /
 app.get("/", (req, res) => {
     res.send("Welcome to MyFlix!");
@@ -211,9 +215,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
 
 app.use(bodyParser.json());
 app.use(methodOverride());
