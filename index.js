@@ -50,7 +50,9 @@ app.get("/", (req, res) => {
 });
 
 //return JSON object when at /movies
-app.get("/movies", passport.authenticate('jwt', { session: false }), (req, res) => {
+//passport.authenticate('jwt', { session: false }), REPLACE LATER
+
+app.get("/movies", (req, res) => {
     Movies.find()
     .then((movies) => {
         res.status(201).json(movies);
